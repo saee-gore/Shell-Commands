@@ -1,0 +1,132 @@
+#include <stdio.h>                      // printf, scanf, fopen, etc.
+#include <stdlib.h>                     // EXIT_SUCCESS, EXIT_FAILURE
+#include <unistd.h>                     // fork
+#include <x86_64-linux-gnu/sys/types.h> // pid_t
+#include <wait.h>                       // wait
+#include <signal.h>                     //signal
+#include<string.h>                      //strings
+#define BUFSIZE 30
+
+  pid_t child; 
+
+  char input[BUFSIZE];
+  char *word[3];   // get command from the user
+  int i;
+
+void cleanup(int signal)
+{
+    int status;
+    waitpid(child, &status, 0);
+}
+
+//following function is used for catching Ctrl+C
+
+void sigintHandler(int sig_num) 
+{ 
+    signal(SIGINT, sigintHandler); 
+    printf("\n This program cannot be terminated using Ctrl+C "); 
+    fflush(stdout); //flushes the output buffer of a stream
+}
+
+int main(int argc, char* argv[])
+{
+   	while(1)
+    {
+    signal(SIGINT, sigintHandler); 
+    printf("myshell---->");
+    fgets(input, BUFSIZE, stdin);
+    word[0]= strtok(input," ");   // for splitting a string by some delimiter.
+    for (i = 1; i <3; i++)
+    {
+      word[i]= strtok(NULL," ");   // separate by space -- continue the call to get two arguments
+    }
+    if (strncmp(word[0],"exit",4)==0)
+    { break;}
+    
+    //create a child
+    child = fork();
+   
+    if (child == -1)
+    {
+      exit(EXIT_FAILURE); // fail to create
+    }
+    if(child == 0)
+    { 
+   
+       if(strncmp(word[0],"ls",2)==0 ){
+        execl("/bin/ls",word[0],NULL);
+        exit(123);
+        }
+        
+        else if(strncmp(word[0],"dir",3)==0){
+        execl("/bin/ls",word[0],NULL);
+         exit(123);}
+        
+        else if(strncmp(word[0],"pwd",3)==0){
+        execl("/bin/pwd", "word[0]",NULL);
+         exit(123);}
+         
+         
+        else if(strncmp(word[0],"chdir",5)==0){
+        execl("/bin/pwd",word[0],NULL);
+        exit(123);}
+
+        else if(strncmp(word[0],"date",4)==0){
+        execl("/bin/date",word[0],"-u",NULL);
+         exit(123);}
+         
+        else if(strncmp(word[0],"time",4)==0){
+        execl("/bin/date",word[0],NULL);
+         exit(123);}
+        
+        
+        else if(strncmp(word[0],"ifconfig",8)==0){
+        execl("/sbin/ifconfig",word[0],NULL);
+         exit(123);}
+         
+         
+        else if(strncmp(word[0],"ipconfig",8)==0){
+        execl("/sbin/ifconfig"," ipconfig",NULL);
+         exit(123);}
+          
+        else if(strcmp(word[0],"cp")==0){
+      
+        execl("/bin/cp","cp",word[1],word[2],NULL);
+         exit(123);}
+         
+        else if(strcmp(word[0],"mv")==0){
+        execl("/bin/mv","mv",word[1],word[2],NULL);
+         exit(123);}
+            
+              
+        else if(strncmp(word[0],"mkdir",5)==0){
+        execl("/bin/mkdir",word[0],word[1],NULL);
+         exit(123);}
+         
+        else if(strncmp(word[0],"cat",3)==0){
+        execl("/bin/cat",word[0],word[1],NULL);
+         exit(123);}
+         
+        else if(strncmp(word[0],"more",4)==0){
+        execl("/bin/more","more",word[1],NULL);
+         exit(123);}
+          
+        else if(strncmp(word[0],"less",4)==0){
+        execl("/usr/bin/less","less",word[1],NULL);
+         exit(123);}
+         
+        else if(strncmp(word[0],"du",2)==0){
+        execl("/usr/bin/du","du",word[1],NULL);
+         exit(123);}
+         
+        else if(strncmp(word[0],"rm",2)==0){
+        execl("/bin/rm","rm",word[1],NULL);
+        exit(123);} 
+         else break;
+     }   
+     else{            
+         int status1;
+         waitpid(child, &status1, 0);}
+     }
+  
+}
