@@ -1,4 +1,3 @@
-**Programmer: Saee A. Gore
 #include <stdio.h>                      // printf, scanf, fopen, etc.
 #include <stdlib.h>                     // EXIT_SUCCESS, EXIT_FAILURE
 #include <unistd.h>                     // fork
