@@ -29,4 +29,4 @@
 ## How to exit the program
   - Type 'exit' and the program will end.
 
-** Programmer: Saee A. Gore **
+ **Programmer: Saee A. Gore**
