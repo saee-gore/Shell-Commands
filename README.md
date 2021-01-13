@@ -1,15 +1,15 @@
-Shell-Commands
+# Shell-Commands
 
--Executes in Linux Shell which supports commands with multiple arguments 
--Handles interrupt signal.
--Written in C 
--Works on a linux server.
+  - Executes in Linux Shell which supports commands with multiple arguments 
+  - Handles interrupt signal.
+  - Written in C 
+  - Works on a linux server.
 
-How to Run
--Save the code in a file named 'code.c' and then save it in a directory.
--For running the code, type 'gcc code.c -pthread -o code'
--Then press 'Enter' and type './code'
-- Try executing various commands.
+## How to Run
+  - Save the code in a file named 'code.c' and then save it in a directory.
+  - For running the code, type 'gcc code.c -pthread -o code'
+  - Then press 'Enter' and type './code'
+  - Try executing various commands.
 
 For example,
 One word commands like:
@@ -27,10 +27,10 @@ Three word commands like:
 cp code.c copycode.c - copies the contents of code.c to copycode.c
 mv code.c copycode.c - renames the file name from code.c to copycode.c
 
-How to catch interrupt signal
-- Press Ctrl+C and a message will be displayed stating Ctrl+C was pressed by user.
+## How to catch interrupt signal
+  - Press Ctrl+C and a message will be displayed stating Ctrl+C was pressed by user.
 
-How to exit the program
-- Type 'exit' and the program will end.
+## How to exit the program
+  - Type 'exit' and the program will end.
 
-**Programmer: Saee A. Gore
+** Programmer: Saee A. Gore**
