@@ -1,14 +1,14 @@
 # Shell-Commands
   - Executes in Linux Shell which supports commands with multiple arguments 
   - Handles interrupt signal.
-  - Written in C 
+  - Written in C programming language.
   - Works on a linux server.
 
 ## How to Run
   - Save the code in a file named 'code.c' and then save it in a directory.
   - For running the code, type 'gcc code.c -pthread -o code'
   - Then press 'Enter' and type './code'
-  - Try executing various commands.
+  - Try executing various commands as mentioned below:
 
     ### One word commands:
     ls - lists contents of a directory
